@@ -12,17 +12,17 @@ console.log('0101:',input.reduce(function(t,n){return parseInt(t)+parseInt(n)},0
 
 var freqs = [];
 var found = false;
-var start = 0;
+var freq = 0;
 
 while (!found) {
-	start = input.reduce(function(t,n){
-		var temp = parseInt(t)+parseInt(n);
-		if (freqs.indexOf(temp) > -1 && !found) {
-			console.log('0102:',temp);
-			found = true
-		} else {
-			freqs.push(temp);
-			return temp;
+	for (i of input) {
+		freq += parseInt(i);
+		if (freqs.indexOf(freq) > -1) {
+			found = true;
+			break;
 		}
-	},start);
+		freqs.push(freq);
+	}
 }
+
+console.log('0102:',freq);
