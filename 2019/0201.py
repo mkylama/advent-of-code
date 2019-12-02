@@ -22,8 +22,13 @@ def gravity(i, a, b):
 
 print('0201: {}'.format(gravity(_input, 12, 2)))
 
+found = False
+
 for noun in range(0, 99):
+	if found:
+		break;
 	for verb in range(0, 99):
 		if gravity(_input, noun, verb) == 19690720:
 			print('0202: {}'.format(100 * noun + verb))
+			found = True
 			break
