@@ -8,11 +8,11 @@ var grid = [];
 
 var size = 300;
 
-for (var x = 0; x < size; x++) {
-	grid[x] = [];
-	for (var y = 0; y < size; y++) {
-		var power_level = Math.floor((((((x + 1) + 10) * (y + 1) + input) * ((x + 1) + 10)) % 1000) / 100) - 5;
-		grid[x].push(power_level);
+for (var x = 1; x <= size; x++) {
+	grid[x-1] = [];
+	for (var y = 1; y <= size; y++) {
+		var power_level = Math.floor(((((x + 10) * y + input) * (x + 10)) % 1000) / 100) - 5;
+		grid[x-1].push(power_level);
 	}
 }
 
