@@ -1,13 +1,11 @@
 import re
+import copy
 
 with open('input/12.txt', 'r') as file:
     moons = file.read().strip().split('\n')
 
 for i in range(len(moons)):
     moons[i] = [list(map(int, re.findall(r'-?\d+', moons[i]))), [0, 0, 0]]
-
-from pprint import pprint as pp
-import copy
 
 pos = 0
 vel = 1
