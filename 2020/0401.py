@@ -6,9 +6,11 @@ with open('input/04.txt', 'r') as file:
 
 
 def validate_data_1(fields):
-    if len(fields) < 7 or (len(fields) == 7 and 'cid' in fields):
-        return False
+    for key in ['byr', 'iyr', 'eyr', 'hgt', 'hcl', 'ecl', 'pid']:
+        if not key in fields:
+            return False
     return True
+
 
 regex = {
     'byr': "^(19[2-9][0-9]|200[0-2])$",
@@ -20,6 +22,7 @@ regex = {
     'pid': "^[0-9]{9}$",
     'cid': ".*",
 }
+
 
 def validate_data_2(fields):
     for key, value in fields.items():
