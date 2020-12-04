@@ -41,10 +41,9 @@ for line in _input:
             key, value = field.split(':')
             passport[key] = value
     else:
-        valid = validate_data_1(passport)
-        if valid:
+        if validate_data_1(passport):
             valid_1 += 1
-            if valid and validate_data_2(passport):
+            if validate_data_2(passport):
                 valid_2 += 1
         passport.clear()
 
