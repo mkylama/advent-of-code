@@ -10,28 +10,21 @@ def validate_data_1(fields):
         return False
     return True
 
+regex = {
+    'byr': "^(19[2-9][0-9]|200[0-2])$",
+    'iyr': "^(201[0-9]|2020)$",
+    'eyr': "^(202[0-9]|2030)$",
+    'hgt': "^(1([5-8][0-9]|9[0-3])cm|(59|6[0-9]|7[0-6])in)$",
+    'hcl': "^#[0-9a-f]{6}$",
+    'ecl': "^(amb|blu|brn|gry|grn|hzl|oth)$",
+    'pid': "^[0-9]{9}$",
+    'cid': ".*",
+}
 
 def validate_data_2(fields):
-    if not (bool(re.match("^\d{4}$", fields['byr'])) and int(fields['byr']) >= 1920 and int(fields['byr']) <= 2002):
-        return False
-
-    if not (bool(re.match("^\d{4}$", fields['iyr'])) and int(fields['iyr']) >= 2010 and int(fields['iyr']) <= 2020):
-        return False
-
-    if not (bool(re.match("^\d{4}$", fields['eyr'])) and int(fields['eyr']) >= 2020 and int(fields['eyr']) <= 2030):
-        return False
-
-    if not (bool(re.match("^\d+(in|cm)$", fields['hgt'])) and (fields['hgt'][-2:] == 'in' and int(fields['hgt'][:-2]) >= 59 and int(fields['hgt'][:-2]) <= 76) or (fields['hgt'][-2:] == 'cm' and int(fields['hgt'][:-2]) >= 150 and int(fields['hgt'][:-2]) <= 193)):
-        return False
-
-    if not bool(re.match("^#[\da-f]{6}$", fields['hcl'])):
-        return False
-
-    if not bool(re.match("^(amb|blu|brn|gry|grn|hzl|oth)$", fields['ecl'])):
-        return False
-
-    if not bool(re.match("^\d{9}$", fields['pid'])):
-        return False
+    for key, value in fields.items():
+        if not bool(re.match(regex[key], value)):
+            return False
 
     return True
 
