@@ -10,7 +10,7 @@ answers = []
 
 for line in _input:
     if len(line) > 0:
-        answers.append(set(line[::1]))
+        answers.append(set(line))
     else:
         count_1 += len(set.union(*answers))
         count_2 += len(set.intersection(*answers))
