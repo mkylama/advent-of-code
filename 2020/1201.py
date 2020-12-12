@@ -56,7 +56,7 @@ def navigate_with_waypoint():
         if a in headings:
             move_coord(waypoint, a, v)
         elif a in dir_values:
-            heading = rotate_waypoint(waypoint, a, v)
+            rotate_waypoint(waypoint, a, v)
         elif a == 'F':
             move_ship(location, waypoint, v)
 
