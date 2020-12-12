@@ -2,25 +2,25 @@ with open('input/12.txt', 'r') as file:
     _input = [x.strip() for x in file.readlines()]
 
 
-directions = ['S', 'W', 'N', 'E']
-lr_values = {'R': 1, 'L': -1}
+headings = ['S', 'W', 'N', 'E']
+dir_values = {'R': 1, 'L': -1}
 
 
-def move_coord(coords, direction, value):
-    i = directions.index(direction)
+def move_coord(coords, heading, value):
+    i = headings.index(heading)
     coords[abs(i % 2 - 1)] += value * int((i // 2 - .5) * 2)
 
 
-def rotate_ship(current, left_or_right, angle):
-    ci = directions.index(current)
-    ci = (ci + angle // 90 * lr_values[left_or_right]) % 4
-    return directions[ci]
+def rotate_ship(current, direction, angle):
+    ci = headings.index(current)
+    ci = (ci + angle // 90 * dir_values[direction]) % 4
+    return headings[ci]
 
 
-def rotate_waypoint(waypoint, left_or_right, angle): 
+def rotate_waypoint(waypoint, direction, angle): 
     for i in range(0, angle // 90):
         waypoint.reverse()
-        waypoint[bool(lr_values[left_or_right] + 1)] *= -1
+        waypoint[bool(dir_values[direction] + 1)] *= -1
 
 
 def move_ship(location, waypoint, multiplier):
@@ -31,18 +31,18 @@ def move_ship(location, waypoint, multiplier):
 def navigate():
     location = [0, 0]
 
-    direction = 'E'
+    heading = 'E'
 
     for inst in _input:
         a = inst[:1]
         v = int(inst[1:])
 
-        if a in directions:
+        if a in headings:
             move_coord(location, a, v)
-        elif a in lr_values:
-            direction = rotate_ship(direction, a, v)
+        elif a in dir_values:
+            heading = rotate_ship(heading, a, v)
         elif a == 'F':
-            move_coord(location, direction, v)
+            move_coord(location, heading, v)
 
     return abs(location[0]) + abs(location[1])
 
@@ -55,10 +55,10 @@ def navigate_with_waypoint():
         a = inst[:1]
         v = int(inst[1:])
 
-        if a in directions:
+        if a in headings:
             move_coord(waypoint, a, v)
-        elif a in lr_values:
-            direction = rotate_waypoint(waypoint, a, v)
+        elif a in dir_values:
+            heading = rotate_waypoint(waypoint, a, v)
         elif a == 'F':
             move_ship(location, waypoint, v)
 
