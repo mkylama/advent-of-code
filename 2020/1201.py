@@ -23,17 +23,6 @@ def rotate_waypoint(waypoint, left_or_right, angle):
         waypoint[bool(lr_values[left_or_right] + 1)] *= -1
 
 
-def move_waypoint(coords, direction, value):
-    if direction == 'N':
-        coords[1] += value
-    elif direction == 'E':
-        coords[0] += value
-    elif direction == 'S':
-        coords[1] -= value
-    elif direction == 'W':
-        coords[0] -= value
-
-
 def move_ship(location, waypoint, multiplier):
     for i in [0, 1]:
         location[i] += waypoint[i] * multiplier
