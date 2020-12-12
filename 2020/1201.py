@@ -12,9 +12,7 @@ def move_coord(coords, heading, value):
 
 
 def rotate_ship(current, direction, angle):
-    ci = headings.index(current)
-    ci = (ci + angle // 90 * dir_values[direction]) % 4
-    return headings[ci]
+    return headings[(headings.index(current) + angle // 90 * dir_values[direction]) % 4]
 
 
 def rotate_waypoint(waypoint, direction, angle): 
