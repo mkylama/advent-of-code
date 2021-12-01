@@ -1,8 +1,7 @@
 import requests
 from datetime import datetime
-from pprint import pprint as pp
 
-session = 'SESSIONTOKEN HERE'
+session = 'SESSIONTOKENHERE'
 
 today = datetime.today()
 
