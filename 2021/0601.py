@@ -1,10 +1,7 @@
 with open('input/06.txt', 'r') as file:
-    _input = [int(x) for x in file.readlines()[0].strip().split(',')]
+    _input = [int(x) for x in file.readline().split(',')]
 
-nums = []
-
-for n in range(0, 9):
-    nums.append(_input.count(n))
+nums = [_input.count(x) for x in range(0, 9)]
 
 for d in range(0, 256):
     nums.append(nums.pop(0))
