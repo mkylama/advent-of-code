@@ -10,13 +10,7 @@ def rearrange(stacks, moves, reverse=False):
     return ''.join([x[-1] for x in stacks])
 
 
-rows = [x[1::4] for x in _input1.split('\n')][:-1]
-stacks = [''] * len(rows[0])
-for containers in reversed(rows):
-    for idx, container in enumerate(containers):
-        if container != ' ':
-            stacks[idx] += container
-
+stacks = [''.join(x).strip() for x in zip(*[list(x[1::4]) for x in _input1.split('\n')][:-1][::-1])]
 moves = _input2.split('\n')
 
 print('0501:', rearrange(stacks[:], moves))
