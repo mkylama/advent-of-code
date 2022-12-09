@@ -9,8 +9,8 @@ def move_head(h, d):
 
 def move_tail(h, t):
     if abs(h[0]-t[0]) > 1 or abs(h[1]-t[1]) > 1:
-        t[0] += round((h[0]-t[0])/1.9)
-        t[1] += round((h[1]-t[1])/1.9)
+        for i in range(2):
+            t[i] += round((h[i]-t[i])/1.9)
 
 
 def simulate(knots=2):
@@ -22,7 +22,7 @@ def simulate(knots=2):
             move_head(coords[0], motion[0])
             for tail in range(len(coords)-1):
                 move_tail(coords[tail], coords[tail+1])
-            visits.add(str(coords[-1][0])+','+str(coords[-1][1]))
+            visits.add(','.join([str(x) for x in coords[-1]]))
 
     return len(visits)
 
