@@ -35,8 +35,6 @@ location = 0
 searching = True
 while searching:
     location += 1
-    if location % 1000000 == 0:
-        print(location)
     humidity = mapper(location, 'humidity-to-location', True)
     temperature = mapper(humidity, 'temperature-to-humidity', True)
     light = mapper(temperature, 'light-to-temperature', True)
