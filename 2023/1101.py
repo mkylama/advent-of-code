@@ -28,15 +28,9 @@ def summer(expansion_multiplier=2):
     dist = 0
     for g1 in range(len(glx) - 1):
         for g2 in range(g1 + 1, len(glx)):
-            dist += abs(glx[g1][0]-glx[g2][0])+abs(glx[g1][1]-glx[g2][1])
-            vr = range(*sorted([glx[g1][0], glx[g2][0]]))
-            for v in vrt:
-                if v in vr:
-                    dist += exp
-            hr = range(*sorted([glx[g1][1], glx[g2][1]]))
-            for h in hor:
-                if h in hr:
-                    dist += exp
+            dist += abs(glx[g1][0] - glx[g2][0]) + abs(glx[g1][1] - glx[g2][1])
+            dist += exp * len([v for v in vrt if v in range(*sorted([glx[g1][0], glx[g2][0]]))])
+            dist += exp * len([h for h in hor if h in range(*sorted([glx[g1][1], glx[g2][1]]))])
     return dist
 
 print('1101:',summer())
