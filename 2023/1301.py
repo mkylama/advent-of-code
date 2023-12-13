@@ -7,12 +7,9 @@ def rotate(l):
 def mirror(l, smudge=False):
     for i in range(1, len(l)):
         linecount = min(i, len(l) - i)
-        if smudge:
-            if sum(1 for a, b in zip(''.join(l[i-linecount:i]), ''.join(reversed(l[i:i+linecount]))) if a != b) == 1:
-                return i
-        else:
-            if ''.join(l[i-linecount:i]) == ''.join(reversed(l[i:i+linecount])):
-                return i
+        diffs = sum(1 for a, b in zip(''.join(l[i-linecount:i]), ''.join(reversed(l[i:i+linecount]))) if a != b)
+        if (smudge and diffs == 1) or (not smudge and diffs == 0):
+            return i
     return 0
 
 print('1301:', sum([100 * mirror(p) + mirror(rotate(p)) for p in _input]))
