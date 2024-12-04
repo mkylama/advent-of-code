@@ -13,12 +13,11 @@ def find_xmas(r, c):
     return found
 
 def find_x_mas(r, c):
-    if 0 < r < rc - 1 and 0 < c < cc - 1:
-        se = ''.join([_input[r+x[0]][c+x[1]] for x in [[-1,-1], [0,0], [1,1]]])
-        sw = ''.join([_input[r+x[0]][c+x[1]] for x in [[-1,1], [0,0], [1,-1]]])
-        if se in ['MAS', 'SAM'] and sw in ['MAS', 'SAM']:
-            return 1
+    se = ''.join([_input[r+x[0]][c+x[1]] for x in [[-1,-1], [0,0], [1,1]]])
+    sw = ''.join([_input[r+x[0]][c+x[1]] for x in [[-1,1], [0,0], [1,-1]]])
+    if se in ['MAS', 'SAM'] and sw in ['MAS', 'SAM']:
+        return 1
     return 0
 
 print('0401:', sum([sum([find_xmas(x, y) for x in range(cc) if _input[x][y] == 'X']) for y in range(rc)]))
-print('0402:', sum([sum([find_x_mas(x, y) for x in range(cc) if _input[x][y] == 'A']) for y in range(rc)]))
+print('0402:', sum([sum([find_x_mas(x, y) for x in range(1, cc-1) if _input[x][y] == 'A']) for y in range(1, rc-1)]))
